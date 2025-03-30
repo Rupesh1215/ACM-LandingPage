@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VVITU-ACM | Spardha Technical Fest</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            animation: headerSlideDown 1s ease-out;
+        }
+
+        @keyframes headerSlideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .logo-text p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: white;
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            margin-top: 70px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            background: #ff5252;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-100%) skewX(-15deg);
+            transition: transform 0.4s ease;
+        }
+
+        .btn:hover::after {
+            transform: translateX(100%) skewX(-15deg);
+        }
+
+        /* About Section */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #333;
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background: linear-gradient(to right, #1a2a6c, #b21f1f, #fdbb2d);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            animation: slideInRight 1s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ACM Officers Section */
+        .officers {
+            background-color: #fff;
+        }
+
+        .officers .section-title h2 {
+            color: #1a2a6c;
+        }
+
+        .officers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .officer-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .officer-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #1a2a6c, #b21f1f, #fdbb2d);
+            z-index: -1;
+        }
+
+        .officer-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .officer-card:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .officer-card:nth-child(3) {
+            animation-delay: 0.5s;
+        }
+
+        .officer-card:nth-child(4) {
+            animation-delay: 0.7s;
+        }
+
+        .officer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .officer-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border: 5px solid #f5f5f5;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .officer-card:hover .officer-image {
+            transform: scale(1.05);
+            border-color: #1a2a6c;
+        }
+
+        .officer-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .officer-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: #1a2a6c;
+        }
+
+        .officer-info p.position {
+            color: #b21f1f;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .officer-info p.department {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .officer-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .officer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background: #f5f5f5;
+            border-radius: 50%;
+            color: #1a2a6c;
+            transition: all 0.3s ease;
+        }
+
+        .officer-social a:hover {
+            background: #1a2a6c;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Events Section */
+        .events {
+            background-color: #f9f9f9;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .event-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .event-card:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .event-card:nth-child(3) {
+            animation-delay: 0.5s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .event-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .event-card:hover .event-image img {
+            transform: scale(1.1);
+        }
+
+        .event-info {
+            padding: 20px;
+        }
+
+        .event-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #1a2a6c;
+        }
+
+        .event-info p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .event-date {
+            display: flex;
+            align-items: center;
+            color: #b21f1f;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .event-date i {
+            margin-right: 8px;
+        }
+
+        /* Registration Form */
+        .registration {
+            background: linear-gradient(135deg, #1a2a6c, #3a7bd5);
+            color: white;
+        }
+
+        .registration .section-title h2 {
+            color: white;
+        }
+
+        .registration .section-title h2::after {
+            background: white;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 1s ease-in;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background: #ff5252;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: #aaa;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: #ff6b6b;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #ff6b6b;
+            transform: translateY(-3px);
+        }
+
+        .quick-links li {
+            margin-bottom: 10px;
+            list-style: none;
+        }
+
+        .quick-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .quick-links a:hover {
+            color: #ff6b6b;
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #ff5252;
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0 10px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .btn {
+                padding: 10px 20px;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+
+            .officer-card {
+                padding: 20px 15px;
+            }
+
+            .officer-image {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <img src="Images/WhatsApp Image 2025-03-30 at 19.03.55_2b5b758e.jpg" alt="VVITU-ACM Logo">
+                <div class="logo-text">
+                    <h1>VVITU-ACM</h1>
+                    <p>Association for Computing Machinery</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#officers">Officers</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#register">Register</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="container">
+        <div class="hero-content">
+            <h1>SPARDHA Technical Fest 2025</h1>
+            <p>Join us for the biggest technical extravaganza at Vasireddy Venkatadri International Technological University. Three days of workshops, competitions, and networking opportunities.</p>
+            <a href="#register" class="btn">Register Now</a>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="section" id="about">
+    <div class="container">
+        <div class="section-title">
+            <h2>About VVITU-ACM</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Who We Are</h3>
+                <p>The VVITU Association for Computing Machinery (ACM) Student Chapter is a dynamic community of students passionate about computing and technology. We aim to foster innovation, learning, and professional growth among our members.</p>
+                <p>Our chapter organizes various technical events, workshops, and competitions throughout the year to enhance students' technical skills and prepare them for the challenges of the digital world.</p>
+                <h3>About SPARDHA</h3>
+                <p>SPARDHA is our annual technical fest that brings together students from across the country to showcase their technical prowess. With over 20 events spanning various domains of computer science and engineering, SPARDHA promises to be an unforgettable experience.</p>
+            </div>
+            <div class="about-image">
+                <img src="Images/WhatsApp Image 2025-03-30 at 19.03.57_cf94f379.jpg" alt="VVITU-ACM Team">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ACM Officers Section -->
+<section class="section officers" id="officers">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our ACM Officers</h2>
+        </div>
+        <div class="officers-grid">
+            <div class="officer-card">
+                <div class="officer-image">
+                    <img src="Images/WhatsApp Image 2025-03-30 at 19.03.57_82406e0d.jpg" alt="Chair">
+                </div>
+                <div class="officer-info">
+                    <h3>K. Bhargav Sai</h3>
+                    <p class="position">Chair</p>
+                    <div class="officer-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="officer-card">
+                <div class="officer-image">
+                    <img src="Images/WhatsApp Image 2025-03-30 at 19.03.56_f4f5f647.jpg" alt="Web Master">
+                </div>
+                <div class="officer-info">
+                    <h3>T. Bharath</h3>
+                    <p class="position">Web Master</p>
+                    <div class="officer-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="officer-card">
+                <div class="officer-image">
+                    <img src="Images/WhatsApp Image 2025-03-30 at 19.03.54_8403e970.jpg" alt="Vice-Chair">
+                </div>
+                <div class="officer-info">
+                    <h3>V. Rakesh Firoz</h3>
+                    <p class="position">Vice-Chair</p>
+                    <div class="officer-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="officer-card">
+                <div class="officer-image">
+                    <img src="Images/WhatsApp Image 2025-03-30 at 19.03.58_7d301b63.jpg" alt="Faculty Sponsor">
+                </div>
+                <div class="officer-info">
+                    <h3>B. Sai Jyothi</h3>
+                    <p class="position">Faculty Sponsor</p>
+                    <p class="department">Department of IT</p>
+                    <div class="officer-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Events Section -->
+<section class="section events" id="events">
+    <div class="container">
+        <div class="section-title">
+            <h2>Featured Events</h2>
+        </div>
+        <div class="events-grid">
+            <div class="event-card">
+                <div class="event-image">
+                    <img src="Images/WhatsApp Image 2025-03-30 at 19.03.58_71885a5c.jpg" alt="Hackathon">
+                </div>
+                <div class="event-info">
+                    <h3>HOUR OF CODE...</h3>
+                    <div class="event-date">
+                    </div>
+                    <p>A 24-hour coding marathon where teams compete to build innovative solutions to real-world problems. Showcase your coding skills and creativity.</p>
+                    <a href="#register" class="btn">Register</a>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-image">
+                    <img src="Images/WhatsApp Image 2025-03-30 at 19.03.53_16587f8c.jpg" alt="Robotics">
+                </div>
+                <div class="event-info">
+                    <h3>Aavega...</h3>
+                    <div class="event-date">
+                    </div>
+                    <p>Design and program robots to complete challenging tasks in this exciting robotics competition. Test your engineering and problem-solving skills.</p>
+                    <a href="#register" class="btn">Register</a>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-image">
+                    <img src="Images/WhatsApp Image 2025-03-30 at 19.03.54_6472902b.jpg">
+                </div>
+                <div class="event-info">
+                    <h3>Cryptic Clue...</h3>
+                    <div class="event-date">
+                    </div>
+                    <p>Learn from industry experts about the latest advancements in Artificial Intelligence and Machine Learning through hands-on workshops.</p>
+                    <a href="#register" class="btn">Register</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Registration Section -->
+<section class="section registration" id="register">
+    <div class="container">
+        <div class="section-title">
+            <h2>Event Registration</h2>
+        </div>
+        <div class="form-container">
+            <form id="registration-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="college">College/University</label>
+                    <input type="text" id="college" name="college" required>
+                </div>
+                <div class="form-group">
+                    <label for="department">Department</label>
+                    <input type="text" id="department" name="department" required>
+                </div>
+                <div class="form-group">
+                    <label for="year">Year of Study</label>
+                    <select id="year" name="year" required>
+                        <option value="">Select Year</option>
+                        <option value="1">First Year</option>
+                        <option value="2">Second Year</option>
+                        <option value="3">Third Year</option>
+                        <option value="4">Fourth Year</option>
+                        <option value="5">Post Graduate</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="event">Select Event</label>
+                    <select id="event" name="event" required>
+                        <option value="">Select Event</option>
+                        <option value="hackathon">Code Warriors Hackathon</option>
+                        <option value="robotics">Robo Rumble</option>
+                        <option value="ai">AI Masterclass</option>
+                        <option value="all">All Events</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Any Special Requirements</label>
+                    <textarea id="message" name="message"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Complete Registration</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer id="contact">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>About VVITU-ACM</h3>
+                <p>The official student chapter of the Association for Computing Machinery at VVITU, dedicated to advancing computing as a science and profession.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="quick-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#officers">ACM Officers</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#register">Registration</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Vasireddy Venkatadri International Technological University, Nambur, Andhra Pradesh</p>
+                <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                <p><i class="fas fa-envelope"></i> acm@vvitu.edu.in</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 VVITU-ACM Student Chapter. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top Button -->
+<div class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+</div>
+
+<script>
+    // Simple form submission handler
+    document.getElementById('registration-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Registration submitted successfully! We will contact you soon with further details.');
+        this.reset();
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Back to top button
+    const backToTopButton = document.querySelector('.back-to-top');
+
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('active');
+        } else {
+            backToTopButton.classList.remove('active');
+        }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Animation on scroll
+    const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.event-card, .about-text, .about-image, .officer-card, .section-title');
+
+        elements.forEach(element => {
+            const elementPosition = element.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.3;
+
+            if(elementPosition < screenPosition) {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }
+        });
+    };
+
+    window.addEventListener('scroll', animateOnScroll);
+    // Trigger once on page load
+    window.addEventListener('load', animateOnScroll);
+</script>
+</body>
+</html>
